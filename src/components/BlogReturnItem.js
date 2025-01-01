@@ -20,7 +20,7 @@ const BlogReturnItem = ({ item }) => {
         library="AntDesign"
         name="delete"
         screen="GetAll"
-        title={item.title}
+        id={item.id}
       />
     </View>
   );

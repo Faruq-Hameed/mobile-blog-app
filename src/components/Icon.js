@@ -1,8 +1,8 @@
 import { TouchableOpacity, StyleSheet } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import { usePostContext } from "../context/BlogContext";
 /**
@@ -19,10 +19,10 @@ import { usePostContext } from "../context/BlogContext";
  * @example
  * <Icon name="GetAll" library="AntDesign" screen="AllPostsScreen" />
  */
-const Icon = ({ name, library, screen, title }) => {
+const Icon = ({ name, library, screen, id }) => {
   const navigation = useNavigation();
-      const {dispatch} = usePostContext()
-  
+  const { dispatch } = usePostContext();
+
   let IconComponent;
   switch (library) {
     case "AntDesign":
@@ -34,7 +34,7 @@ const Icon = ({ name, library, screen, title }) => {
     case "Ionicons":
       IconComponent = Ionicons;
       break;
-      case "FontAwesome5":
+    case "FontAwesome5":
       IconComponent = FontAwesome5;
       break;
     default:
@@ -46,12 +46,10 @@ const Icon = ({ name, library, screen, title }) => {
   return (
     <TouchableOpacity
       style={styles.icon}
-      onPress={
-        () => {
-          dispatch({type: "delete_post", payload: {title}})
-         return navigation.navigate(screen)
-        }
-      }
+      onPress={() => {
+        dispatch({ type: "delete_post", payload: { id } });
+        return navigation.navigate(screen);
+      }}
     >
       {!name ? null : <IconComponent name={name} size={30} color="black" />}
     </TouchableOpacity>

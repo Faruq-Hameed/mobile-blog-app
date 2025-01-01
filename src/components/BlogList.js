@@ -8,7 +8,7 @@ const BlogList = ({ posts, onPressDelete }) => {
   return (
     <FlatList
       data={posts}
-      keyExtractor={(posts) => posts.title}
+      keyExtractor={(posts) => posts.id}
       renderItem={({ item }) => <BlogReturnItem item={item} />}
     />
   );

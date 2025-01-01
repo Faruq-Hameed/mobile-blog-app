@@ -7,11 +7,11 @@ import BlogList from "../components/BlogList";
 import { usePostContext } from "../context/BlogContext";
 
 const AllPostsScreen = () => {
-  const {data} = usePostContext()
+  const { data } = usePostContext();
   return (
     <>
       <BlogListHeader iconName="plus" library="Feather" />
-      <BlogList posts={data}/>
+      <BlogList posts={data} />
     </>
   );
 };
