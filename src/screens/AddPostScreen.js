@@ -12,8 +12,12 @@ const [content, setContent] = useState("")
   const {  dispatch } = usePostContext();
   return (
     <>
+
       <BlogListHeader />
-      <InputItem title={"Title:"} input={title} onTextEdit={(texts) => setTitle(texts)} />
+      <InputItem title={"Title:"} 
+      input={title} onTextEdit={(texts) => 
+      setTitle(texts)}
+       />
       <InputItem
         title={"Content:"}
         input={content}
