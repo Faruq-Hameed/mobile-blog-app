@@ -10,43 +10,43 @@ const AddBlogScreen = () => {
   const { state } = usePostContext();
   const route = useRoute();
   const { savePost } = useMyCallbacks();
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+
   const id = route.params?.id;
+  const initialState = {
+    title: "",
+    content: "",
+  }
   //if id is passed that means this component was called using edit navigation
-  useEffect(() => {
     if (id) {
       const post = state.find((post) => post.id === id);
-      if (post) {
-        setTitle(post.title);
-        setContent(post.content);
-      }
+      initialState.title = post.title;
+      initialState.content = post.content;
     }
-  }, [id]);
-
-  const titleLabel = id ? "New Title :" : "Title :";
-  const contentLabel = id ? "New Content :" : "Content :";
-  return (
-    <>
-      <BlogListHeader />
-      <InputItem
-        title={titleLabel}
-        input={title}
-        onTextEdit={(texts) => setTitle(texts)}
-      />
-      <InputItem
-        title={contentLabel}
-        input={content}
-        onTextEdit={(texts) => setContent(texts)}
-      />
-      <Button
-        title="Save"
-        onPress={() => {
-          savePost({ title, content, id: id });
-        }}
-      />
-    </>
-  );
+    const [title, setTitle] = useState(initialState.title);
+    const [content, setContent] = useState(initialState.content);
+    const titleLabel = id ? "New Title :" : "Title :";
+    const contentLabel = id ? "New Content :" : "Content :";
+    return (
+      <>
+        {/* <BlogListHeader /> */}
+        <InputItem
+          title={titleLabel}
+          input={title}
+          onTextEdit={(texts) => setTitle(texts)}
+        />
+        <InputItem
+          title={contentLabel}
+          input={content}
+          onTextEdit={(texts) => setContent(texts)}
+        />
+        <Button
+          title="Save"
+          onPress={() => {
+            savePost({ title, content, id });
+          }}
+        />
+      </>
+    );
 };
 
 const styles = StyleSheet.create({});

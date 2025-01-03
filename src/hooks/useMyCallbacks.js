@@ -1,5 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { usePostContext } from "../context/BlogContext";
+import { Alert } from "react-native";
 
 /**
  * Custom hook that provides navigation and post management callbacks
@@ -9,7 +10,7 @@ export const useMyCallbacks = () => {
   const navigation = useNavigation();
   const { dispatch } = usePostContext();
 
-   /**
+  /**
    * Navigates to Add screen for creating or editing a post
    * @param {Object} params - Navigation parameters
    * @param {string|number} [params.id] - Post ID for editing, if not provided assumes new post
@@ -28,12 +29,20 @@ export const useMyCallbacks = () => {
    * @param {string} post.content - Content of the post
    * @param {string|number} [post.id] - ID of the post if editing
    */
-  const savePost = ({ title, content, id }) => {
-    dispatch({ type: "add_post", payload: { title, content, id } });
-    navigation.navigate("ShowAll");
+  const savePost = async ({ title, content, id })=> {
+    try {
+      if (!id) {
+        await dispatch({ type: "add_post", payload: { title, content, id } });
+      } else {
+        await dispatch({ type: "edit_post", payload: { title, content, id } });
+      }
+      navigation.goBack();
+    } catch (error) {
+      Alert.alert("Error", error.message);
+    }
   };
 
- /**
+  /**
    * Deletes a post and navigates to ShowAll screen
    * @param {Object} params - Delete parameters
    * @param {string|number} params.id - ID of the post to delete

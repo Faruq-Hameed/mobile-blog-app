@@ -18,12 +18,12 @@ const headerStyles = StyleSheet.create({
   container: {
     borderWidth: 1,
     flexDirection: "row",
-    height: 40,
+    height: 50,
     backgroundColor: "rgb(230, 231, 231)",
     justifyContent: "center",
     alignItems: "center",
     marginHorizontal: 5,
-    marginBottom: 30,
+    marginVertical: 40,
   },
 });
 
