@@ -3,11 +3,13 @@ import { Text, View, FlatList } from "react-native";
 import Icon from "./Icon";
 import Posts from "../db/Posts";
 import BlogReturnItem from "./BlogReturnItem";
+import { usePostContext } from "../context/BlogContext";
 
-const BlogList = ({ posts, onPressDelete }) => {
+const BlogList = () => {
+    const { state } = usePostContext();
   return (
     <FlatList
-      data={posts}
+      data={state}
       keyExtractor={(posts) => posts.id}
       renderItem={({ item }) => <BlogReturnItem item={item} />}
     />

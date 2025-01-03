@@ -3,7 +3,9 @@ import { postReducer } from "../reducers/post.reducer";
 
 const PostContext = React.createContext();
 
-const initialState = []
+const initialState = [
+  {title: "Test title", content:"Test content", id: 1 }
+]
 
 /**
  * PostProvider component that manages the state of blog posts and provides
@@ -18,7 +20,7 @@ export const PostProvider = ({ children }) => {
   const [state, dispatch] = useReducer(postReducer, initialState);
 
   const valueContext = {
-        data: state,
+    state,
         dispatch
   }
   return (

@@ -6,12 +6,11 @@ import BlogListHeader from "../utils/BlogListHeader";
 import BlogList from "../components/BlogList";
 import { usePostContext } from "../context/BlogContext";
 
-const AllPostsScreen = () => {
-  const { data } = usePostContext();
+const ShowPostsScreen = () => {
   return (
     <>
       <BlogListHeader iconName="plus" library="Feather" />
-      <BlogList posts={data} />
+      <BlogList />
     </>
   );
 };
@@ -20,4 +19,4 @@ const styles = StyleSheet.create({
   mainContainer: {},
 });
 
-export default AllPostsScreen;
+export default ShowPostsScreen;

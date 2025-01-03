@@ -1,14 +1,14 @@
 import React from "react";
 import { Text, StyleSheet } from "react-native";
 import BlogListHeader from "../utils/BlogListHeader";
-import GetOnePost from "../components/GetOnePost";
+import ShowOnePost from "../components/ShowPostDetails";
 
 const GetPostScreen = ({ route }) => {
-  const { post } = route.params;
+  const { id } = route.params;
   return (
     <>
-      <BlogListHeader iconName="pen" library="FontAwesome5"/>
-      <GetOnePost item={post} />
+      <BlogListHeader iconName="pen" library="FontAwesome5" />
+      <ShowOnePost id={id} />
     </>
   );
 };

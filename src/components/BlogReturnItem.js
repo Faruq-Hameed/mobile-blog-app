@@ -1,26 +1,27 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
 
 import Icon from "./Icon";
 import { usePostContext } from "../context/BlogContext";
+import { useMyCallbacks } from "../hooks/useMyCallbacks";
 
 const BlogReturnItem = ({ item }) => {
-  const navigation = useNavigation();
+  const { deletePost, toShowOnePost } = useMyCallbacks();
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.item}
-        onPress={() => navigation.navigate("GetOne", { post: item })}
+        onPress={() => toShowOnePost(item.id)} //post id
       >
         <Text>{item.title}</Text>
       </TouchableOpacity>
       <Icon
         library="AntDesign"
         name="delete"
-        screen="GetAll"
-        id={item.id}
+        onPress={() => deletePost({ id: item.id })}
       />
     </View>
   );

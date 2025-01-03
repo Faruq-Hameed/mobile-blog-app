@@ -11,17 +11,15 @@ import { usePostContext } from "../context/BlogContext";
  * @component
  * @param {Object} props - The properties that define the Icon component.
  * @param {string} props.name - The name of the icon to be displayed.
- * @param {Object} [props.style] - Custom styles to be applied to the icon (not currently used in the component).
  * @param {string} props.library - The icon library to use. Must be either "AntDesign", "Ionicons","Feather".
- * @param {string} props.screen - The name of the screen to navigate to when the icon is pressed.
+ * @param {string} props.onPress - callback to be called when the icon is clicked
  * @returns {React.Element|null} A TouchableOpacity component with the icon, or null if the library is invalid.
  *
  * @example
- * <Icon name="GetAll" library="AntDesign" screen="AllPostsScreen" />
+ * <Icon name="ShowAll" library="AntDesign" screen="ShowPostsScreen" />
  */
-const Icon = ({ name, library, screen, id }) => {
+const Icon = ({ name, library, onPress }) => {
   const navigation = useNavigation();
-  const { dispatch } = usePostContext();
 
   let IconComponent;
   switch (library) {
@@ -44,13 +42,7 @@ const Icon = ({ name, library, screen, id }) => {
   if (!library || !expectedLibrary.includes(library)) return null;
 
   return (
-    <TouchableOpacity
-      style={styles.icon}
-      onPress={() => {
-        dispatch({ type: "delete_post", payload: { id } });
-        return navigation.navigate(screen);
-      }}
-    >
+    <TouchableOpacity style={styles.icon} onPress={onPress}>
       {!name ? null : <IconComponent name={name} size={30} color="black" />}
     </TouchableOpacity>
   );

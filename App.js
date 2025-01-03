@@ -1,8 +1,8 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import AllPostsScreen from "./src/screens/GetAllPostsScreen";
+import ShowPostsScreen from "./src/screens/ShowAllPostsScreen";
 import AddPostScreen from "./src/screens/AddPostScreen";
-import GetPostScreen from "./src/screens/GetPostScreen";
+import GetPostScreen from "./src/screens/ShowOnePostScreen";
 import { PostProvider } from "./src/context/BlogContext";
 
 const RootStack = createNativeStackNavigator();
@@ -12,7 +12,7 @@ export default () => {
     <PostProvider>
       <NavigationContainer>
         <RootStack.Navigator
-          initialRouteName="GetAll" // Set the default screen here
+          initialRouteName="ShowAll" // Set the default screen here
           screenOptions={{
             headerStyle: { backgroundColor: "#f4511e" },
             headerTintColor: "#fff",
@@ -20,8 +20,8 @@ export default () => {
           }}
         >
           <RootStack.Screen
-            name="GetAll"
-            component={AllPostsScreen}
+            name="ShowAll"
+            component={ShowPostsScreen}
             options={{ title: "Get All Posts Screen" }}
           />
           <RootStack.Screen
@@ -30,7 +30,7 @@ export default () => {
             options={{ title: "Add Post Screen" }}
           />
           <RootStack.Screen
-            name="GetOne"
+            name="ShowOne"
             component={GetPostScreen}
             options={{ title: "Get One Post Screen" }}
           />

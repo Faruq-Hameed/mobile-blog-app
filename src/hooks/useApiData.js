@@ -1,7 +1,7 @@
 // // useApiData.js
 // import { useState, useEffect } from "react";
 // import { Alert, ActivityIndicator } from "react-native";
-// import { getAllData } from "../apis/yelp.apis";
+// import { ShowAllData } from "../apis/yelp.apis";
 
 // const useApiData = () => {
 //   const [data, setData] = useState(null);
@@ -12,7 +12,7 @@
 //     setLoading(true);
 //     setError(null);
 //     try {
-//       const searchData = await getAllData(term);
+//       const searchData = await ShowAllData(term);
 //       console.log({ searchData: searchData.length });
 //       setData(searchData);
 //     } catch (err) {
