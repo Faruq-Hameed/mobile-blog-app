@@ -1,12 +1,18 @@
 import { useNavigation } from "@react-navigation/native";
 import { usePostContext } from "../context/BlogContext";
 
+/**
+ * Custom hook that provides navigation and post management callbacks
+ * @returns {Object} Object containing navigation and post management functions
+ */
 export const useMyCallbacks = () => {
   const navigation = useNavigation();
   const { dispatch } = usePostContext();
 
-  /**callback to navigate to AddPostScreen the icon is pressed
-   * @Navigation navigate to AddPostScreen
+   /**
+   * Navigates to Add screen for creating or editing a post
+   * @param {Object} params - Navigation parameters
+   * @param {string|number} [params.id] - Post ID for editing, if not provided assumes new post
    */
   const toSaveScreen = ({ id }) => {
     if (!id) {
@@ -15,28 +21,31 @@ export const useMyCallbacks = () => {
     return navigation.navigate("Add", { id });
   };
 
-  /**callback to add a post when save is clicked
-   * @param title post title
-   * @param content post content
-   * @Navigation navigate to ShowAll posts screen
+  /**
+   * Saves a new post or updates existing post and navigates to ShowAll screen
+   * @param {Object} post - Post data
+   * @param {string} post.title - Title of the post
+   * @param {string} post.content - Content of the post
+   * @param {string|number} [post.id] - ID of the post if editing
    */
   const savePost = ({ title, content, id }) => {
     dispatch({ type: "add_post", payload: { title, content, id } });
     navigation.navigate("ShowAll");
   };
 
-  /**callback to delete a post when delete icon is pressed
-   * @param id post id
-   * @Navigation navigate to ShowAll posts screen
+ /**
+   * Deletes a post and navigates to ShowAll screen
+   * @param {Object} params - Delete parameters
+   * @param {string|number} params.id - ID of the post to delete
    */
   const deletePost = ({ id }) => {
     dispatch({ type: "delete_post", payload: { id } });
     navigation.navigate("ShowAll");
   };
 
-  /**callback to navigate to a post when the post title is pressed
-   * @param id post id
-   * @Navigation navigate to ShowOne posts screen with { id } params
+  /**
+   * Navigates to ShowOne screen to display a single post
+   * @param {string|number} id - ID of the post to show
    */
   const toShowOnePost = (id) => navigation.navigate("ShowOne", { id });
 
