@@ -13,6 +13,7 @@ const AddBlogScreen = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const id = route.params?.id;
+  //if id is passed that means this component was called using edit navigation
   useEffect(() => {
     if (id) {
       const post = state.find((post) => post.id === id);
