@@ -1,6 +1,6 @@
 import React, { use, useEffect, useLayoutEffect, useReducer } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import Posts from "../db/Posts";
+import Posts from "../apis/Posts";
 
 import BlogListHeader from "../utils/BlogListHeader";
 import BlogList from "../components/BlogList";
@@ -17,12 +17,10 @@ import { useNavigation } from "@react-navigation/native";
 // };
 
 export default function ShowPostsScreen() {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
   useLayoutEffect(() => {
     navigation.setOptions({
-      header: () => (
-        <BlogListHeader iconName="plus" library="Feather" />
-      )
+      header: () => <BlogListHeader iconName="plus" library="Feather" />,
     });
   }, [navigation]);
 
